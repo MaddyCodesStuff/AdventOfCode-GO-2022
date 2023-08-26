@@ -1,0 +1,20 @@
+package main
+
+import (
+	"fmt"
+	"io"
+)
+
+type User struct 
+{
+	username	string
+
+	
+}
+func main()
+{
+	ValidPath("input")
+
+}
+
+
