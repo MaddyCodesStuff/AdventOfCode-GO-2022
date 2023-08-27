@@ -21,32 +21,47 @@ func main(){
 	scanner := bufio.NewScanner(file)
 
 	elf := 0
-	index := 0
 	elves = append(elves, elf)
 	for scanner.Scan(){
-		
 		line := scanner.Text()
 		calorieCount, err := strconv.Atoi(line)
-
-		if err != nil {
-			elves[index] += elf
-			elves = append(elves, elf)
-			elf = 0	
-			index++
+		if calorieCount > 0{
+			elf += calorieCount		
 		}
-
-		elf += calorieCount
-
+		if err != nil {
+			elves = append(elves, elf)
+			elf = 0
+		}
 	}
-}		
 
+
+	sortedElves := bubbleSort(elves)
+	
+	totalElves := len(sortedElves) 	
+	bigThree := sortedElves[totalElves - 1] + sortedElves[totalElves - 2]	 + sortedElves[totalElves - 3]
+	fmt.Println(sortedElves[totalElves -1])
+	fmt.Println(bigThree)
+}
 
 func bubbleSort(unsortedList []int) []int {
-	sortedList :=  make([] int, 0)
-	for elf := range unsortedList{
-		if unsortedList[elf] > unsortedList[elf + 1]{
-			tempContainer := 	
+		
+	for index := len(unsortedList); index > 0; index--{
+		for j:= 0; j < index; j++ {
+			nextElf := j + 1
+
+			if j == index - 1{
+				
+				break;
+			}
+
+			if unsortedList[j] > unsortedList[nextElf]{
+				tempStorage := unsortedList[nextElf]
+				unsortedList[nextElf] = unsortedList[j]
+				unsortedList[j] = tempStorage
+
+			}
 		}
-	}		
-	return sortedList
+	}
+	
+	return unsortedList
 }
